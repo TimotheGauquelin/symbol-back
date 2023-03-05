@@ -13,4 +13,6 @@ public interface ApologyService {
     Optional<Apology> findByHttpCode(Long httpCode);
 
     void save(ApologyDTO apologyDTO);
+
+    boolean checkIfApologyMessageAlreadyExists(String message);
 }

@@ -1,5 +1,6 @@
 package com.example.trial.service.serviceImpl;
 
+import com.example.trial.controler.error.exception.EntityDontExistException;
 import com.example.trial.model.Apology;
 import com.example.trial.repository.ApologyRepository;
 import com.example.trial.service.ApologyService;
@@ -33,7 +34,7 @@ public class ApologyServiceImpl implements ApologyService {
         if(apology.isPresent()) {
             return Optional.of(apology.get());
         }
-        return Optional.empty();
+        throw new EntityDontExistException("Apology");
     }
 
     @Override
@@ -42,5 +43,10 @@ public class ApologyServiceImpl implements ApologyService {
         Apology apology = modelMapper.map(apologyDTO, Apology.class);
         apologyRepository.save(apology);
 
+    }
+
+    @Override
+    public boolean checkIfApologyMessageAlreadyExists(String message) {
+        return apologyRepository.existsApologyByMessageIgnoreCase(message);
     }
 }

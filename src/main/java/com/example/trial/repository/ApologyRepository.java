@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface ApologyRepository extends JpaRepository<Apology, Long> {
 
     Optional<Apology> findByHttpCode(Long httpCode);
+
+    boolean existsApologyByMessageIgnoreCase(String message);
 }
