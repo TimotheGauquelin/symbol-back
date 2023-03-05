@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -18,6 +19,15 @@ public class ApologyServiceImpl implements ApologyService {
     @Override
     @Transactional(readOnly = true)
     public List<Apology> findAll() {
-        return apologyRepository.findAllApologies();
+        return apologyRepository.findAll();
+    }
+
+    @Override
+    public Optional<Apology> findByHttpCode(Long httpCode) {
+        Optional<Apology> apology = apologyRepository.findByHttpCode(httpCode);
+        if(apology.isPresent()) {
+            return Optional.of(apology.get());
+        }
+        return Optional.empty();
     }
 }
