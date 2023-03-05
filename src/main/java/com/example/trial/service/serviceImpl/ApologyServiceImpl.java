@@ -3,17 +3,22 @@ package com.example.trial.service.serviceImpl;
 import com.example.trial.model.Apology;
 import com.example.trial.repository.ApologyRepository;
 import com.example.trial.service.ApologyService;
+import com.example.trial.service.dto.ApologyDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import org.modelmapper.ModelMapper;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
 public class ApologyServiceImpl implements ApologyService {
+
+    //ModelMapper allows to map datas between different structured objects in ModelMapper
+    private final ModelMapper modelMapper;
 
     private final ApologyRepository apologyRepository;
     @Override
@@ -29,5 +34,13 @@ public class ApologyServiceImpl implements ApologyService {
             return Optional.of(apology.get());
         }
         return Optional.empty();
+    }
+
+    @Override
+    public void save(ApologyDTO apologyDTO) {
+
+        Apology apology = modelMapper.map(apologyDTO, Apology.class);
+        apologyRepository.save(apology);
+
     }
 }

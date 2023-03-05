@@ -2,14 +2,13 @@ package com.example.trial.controler;
 
 import com.example.trial.model.Apology;
 import com.example.trial.service.ApologyService;
+import com.example.trial.service.dto.ApologyDTO;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -42,6 +41,21 @@ public class ApologyController {
 
         Optional<Apology> apology = apologyService.findByHttpCode(httpCode);
         return ResponseEntity.status(HttpStatus.OK).body(apology);
+    }
+
+    /**
+     * {@Code: POST /apologies} Method which adds an apology.
+     */
+    @PostMapping("/public/apologies")
+    public ResponseEntity<Void> addApology(@Valid @RequestBody ApologyDTO apologyDTO) {
+        log.debug("Request to add an apology: {}", apologyDTO );
+
+        if(apologyDTO.getHttpCode() != null) {
+            log.error("ApologyDTO id must be null");
+        } else {
+            apologyService.save(apologyDTO);
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
 }
