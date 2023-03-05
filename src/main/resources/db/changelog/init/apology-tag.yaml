@@ -1,0 +1,42 @@
+databaseChangeLog:
+  #CREATE TABLE
+  - changeSet:
+      id: 202303051657-sequence-apology-tag
+      author: GAUQUELIN Timothé
+      changes:
+        - createSequence:
+            sequenceName: apology_tag_seq
+            incrementBy: 1
+            startValue: 1000
+
+  #UPDATE TABLE
+  - changeSet:
+      id: 202303051658-create-table-apology-tag
+      author: GAUQUELIN Timothé
+      changes:
+        - createTable:
+            tableName: apology_tag
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: apology_tag_pkey
+              - column:
+                  name: label
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+  #LOAD DATA INSIDE TABLE
+  - changeSet:
+      id: 202303051659-load-apology-tag-data
+      author: GAUQUELIN Timothé
+      changes:
+        - loadData:
+            encoding: UTF-8
+            file: db/changelog/data/apology-tag.csv
+            tableName: apology_tag
+            separator: ;

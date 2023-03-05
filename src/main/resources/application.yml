@@ -1,31 +1,18 @@
 spring:
-  info:
-    app:
-      version: '@project.version@'
-      build-date: '@maven.build.timestamp@'
-  cloud:
-    config:
-      enabled: false
-    application:
-      name: dev_apologies
-    datasource:
-      url: jdbc:postgresql://${DB_URL}
-      username: ${DB_USERNAME}
-      password: ${DB_PASSWORD}
-      driver-class-name: org.postgresql.Driver
-    jpa:
-      database-platform: org.hibernate.dialect.PostgreSQL9Dialect
-      properties:
-        hibernate:
-          dialect: org.hibernate.dialect.PostgreSQLDialect
-          format_sql: true
-          temp:
-            use_jdbc_metadata_defaults: false
+  datasource:
+    url: jdbc:postgresql://${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    properties:
       hibernate:
-        ddl-auto: none
-      show-sql: true
-    liquibase:
-      change-log: classpath:db/changelog/db.changelog-master.yaml
-
-server:
-  port: 8080
+        format_sql: true
+        temp:
+          use_jdbc_metadata_defaults: false
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml

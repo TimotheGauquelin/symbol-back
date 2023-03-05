@@ -1,0 +1,47 @@
+databaseChangeLog:
+  #CREATE TABLE
+  - changeSet:
+      id: 202303051703-sequence-apology
+      author: GAUQUELIN Timothé
+      changes:
+        - createSequence:
+            sequenceName: apology_seq
+            incrementBy: 1
+            startValue: 1000
+
+  #UPDATE TABLE
+  - changeSet:
+      id: 202303051704-create-table-apology
+      author: GAUQUELIN Timothé
+      changes:
+        - createTable:
+            tableName: apology
+            columns:
+              - column:
+                  name: http_code
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: apology_pkey
+              - column:
+                  name: message
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: apology_tag_label
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+  #LOAD DATA INSIDE TABLE
+  - changeSet:
+      id: 202303051659-load-apology-data
+      author: GAUQUELIN Timothé
+      changes:
+        - loadData:
+            encoding: UTF-8
+            file: db/changelog/data/apology.csv
+            tableName: apology
+            separator: ;
