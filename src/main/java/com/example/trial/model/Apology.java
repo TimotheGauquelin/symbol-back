@@ -29,6 +29,7 @@ public class Apology {
     private String message;
 
     @ManyToOne(optional = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private ApologyTag apologyTag;
 
 }

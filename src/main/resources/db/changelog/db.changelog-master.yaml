@@ -3,3 +3,5 @@ databaseChangeLog:
       file: db/changelog/init/apology.yaml
   - include:
       file: db/changelog/init/apology-tag.yaml
+  - include:
+      file: db/changelog/init/apology-relationship.yaml

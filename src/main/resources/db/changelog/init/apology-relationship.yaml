@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: 202303051822-apology-many-to-one-apology-tag
+      author: GAUQUELIN Timothé
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: apology
+            baseColumnNames: apology_tag_label
+            constraintName: apology_tag_fkey
+            referencedTableName: apology_tag
+            referencedColumnNames: label

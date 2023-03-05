@@ -18,17 +18,12 @@ databaseChangeLog:
             tableName: apology_tag
             columns:
               - column:
-                  name: id
-                  type: BIGINT
-                  constraints:
-                    nullable: false
-                    primaryKey: true
-                    primaryKeyName: apology_tag_pkey
-              - column:
                   name: label
                   type: VARCHAR(255)
                   constraints:
                     nullable: false
+                    primaryKey: true
+                    primaryKeyName: apology_tag_pkey
 
   #LOAD DATA INSIDE TABLE
   - changeSet:
