@@ -1,5 +1,6 @@
 package com.example.trial.controler;
 
+import com.example.trial.controler.error.exception.IdMustBeNullException;
 import com.example.trial.model.Apology;
 import com.example.trial.service.ApologyService;
 import com.example.trial.service.dto.ApologyDTO;
@@ -45,16 +46,16 @@ public class ApologyController {
 
     /**
      * {@Code: POST /apologies} Method which adds an apology.
+     * @param apologyDTO needs a unique message AND an apologyTag label
      */
     @PostMapping("/public/apologies")
     public ResponseEntity<Void> addApology(@Valid @RequestBody ApologyDTO apologyDTO) {
         log.debug("Request to add an apology: {}", apologyDTO );
 
-        if(apologyDTO.getHttpCode() != null) {
-            log.error("ApologyDTO id must be null");
-        } else {
-            apologyService.save(apologyDTO);
-        }
+        if(apologyDTO.getHttpCode() != null)
+            throw new IdMustBeNullException();
+
+        apologyService.save(apologyDTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
