@@ -37,6 +37,7 @@ public class ApologyServiceImpl implements ApologyService {
         throw new EntityDontExistException("Apology");
     }
 
+
     @Override
     public void save(ApologyDTO apologyDTO) {
 
