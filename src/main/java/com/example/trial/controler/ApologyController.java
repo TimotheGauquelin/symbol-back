@@ -51,7 +51,7 @@ public class ApologyController {
      * @param apologyDTO needs a unique message AND an apologyTag label
      */
     @PostMapping("/public/apologies")
-    public ResponseEntity<Void> addApology(@Valid @RequestBody ApologyDTO apologyDTO) {
+    public ResponseEntity<Apology> addApology(@Valid @RequestBody ApologyDTO apologyDTO) {
         log.debug("Request to add an apology: {}", apologyDTO );
 
         if(apologyDTO.getHttpCode() != null)
@@ -60,8 +60,8 @@ public class ApologyController {
         if(apologyService.checkIfApologyMessageAlreadyExists(apologyDTO.getMessage()))
             throw new NameAlreadyExistsException(apologyDTO.getMessage(), "apology");
 
-        apologyService.save(apologyDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        Apology newApology = apologyService.save(apologyDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(newApology);
     }
 
 }

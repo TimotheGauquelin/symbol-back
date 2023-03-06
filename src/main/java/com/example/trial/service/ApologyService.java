@@ -2,7 +2,6 @@ package com.example.trial.service;
 
 import com.example.trial.model.Apology;
 import com.example.trial.service.dto.ApologyDTO;
-import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,7 +11,7 @@ public interface ApologyService {
 
     Optional<Apology> findByHttpCode(Long httpCode);
 
-    void save(ApologyDTO apologyDTO);
+    Apology save(ApologyDTO apologyDTO);
 
     boolean checkIfApologyMessageAlreadyExists(String message);
 }

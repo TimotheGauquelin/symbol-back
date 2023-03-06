@@ -39,11 +39,12 @@ public class ApologyServiceImpl implements ApologyService {
 
 
     @Override
-    public void save(ApologyDTO apologyDTO) {
+    public Apology save(ApologyDTO apologyDTO) {
 
         Apology apology = modelMapper.map(apologyDTO, Apology.class);
         apologyRepository.save(apology);
 
+        return apology;
     }
 
     @Override
