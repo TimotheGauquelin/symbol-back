@@ -1,6 +1,5 @@
 package com.example.trial.controler;
 
-import com.example.trial.model.Apology;
 import com.example.trial.model.ApologyTag;
 import com.example.trial.service.ApologyTagService;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@CrossOrigin(origins = {"http://localhost:3000"})
+@CrossOrigin(origins = {"http://${FRONT_URL}"})
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")

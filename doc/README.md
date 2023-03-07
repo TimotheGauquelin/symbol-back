@@ -6,11 +6,11 @@
 
 ### **All projects URL (to clone) :**
 
-**FRONT :** **`https://github.com/TimotheGauquelin/symbol-front.git`**
+- **FRONT :** **`https://github.com/TimotheGauquelin/symbol-front.git`**
 
-**BACK :** **`https://github.com/TimotheGauquelin/symbol-back.git`**
+- **BACK :** **`https://github.com/TimotheGauquelin/symbol-back.git`**
 
-**BDD :** Create a database with PgAdmin
+- **BDD :** Create a database with PgAdmin
 
 ---
 ### FRONT-END
@@ -24,7 +24,7 @@ Before running, install all dependencies -> New Terminal, and apply in command :
 
 To run the project, go to Terminal -> New Terminal, and apply in command : **`npm run start`**.
 
-By default, project started in port 3000
+By default, project started on port: **`3000`**
 
 ---
 ### BACK-END 
@@ -34,14 +34,16 @@ To import the project into **IntelliJ**, open the folder, click on the Maven's b
 
 ### ENV
 
-The project needs some *environmental variables*. To set it up, go to Edit Configuration, then click on Java Options Modify button.
+The project needs some *environmental variables*. To set them up, go to Edit Configuration, then click on Java Options Modify button.
 
 - **`DB_URL`**: the url of db server. (ex: localhost:5432/devapologies)
 - **`DB_PASSWORD`**: password of the db. (ex: postgres)
 - **`DB_USERNAME`**: username used for the db. (ex: postgres)
+- **`FRONT_URL`**: the url of front server (ex: localhost:3000)
+
 
 ### RUN
 
 To run the project, go to Edit Configuration, create a new Maven configuration and apply : **`spring-boot:run`**.
 
-By default, project started on port 8080
+By default, project started on port: **`8080`**

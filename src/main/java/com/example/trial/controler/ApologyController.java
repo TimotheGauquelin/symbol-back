@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = {"http://localhost:3000"})
+@CrossOrigin(origins = {"http://${FRONT_URL}"})
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
