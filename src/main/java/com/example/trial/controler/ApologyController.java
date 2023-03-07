@@ -1,6 +1,7 @@
 package com.example.trial.controler;
 
 import com.example.trial.controler.error.exception.IdMustBeNullException;
+import com.example.trial.controler.error.exception.LabelDontBeEmptyException;
 import com.example.trial.controler.error.exception.NameAlreadyExistsException;
 import com.example.trial.model.Apology;
 import com.example.trial.service.ApologyService;
@@ -56,6 +57,9 @@ public class ApologyController {
 
         if(apologyDTO.getHttpCode() != null)
             throw new IdMustBeNullException();
+
+        if(apologyDTO.getApologyTag().getLabel().isEmpty())
+            throw new LabelDontBeEmptyException("apology type");
 
         if(apologyService.checkIfApologyMessageAlreadyExists(apologyDTO.getMessage()))
             throw new NameAlreadyExistsException(apologyDTO.getMessage(), "apology");

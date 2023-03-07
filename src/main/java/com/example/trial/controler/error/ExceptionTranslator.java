@@ -2,6 +2,7 @@ package com.example.trial.controler.error;
 
 import com.example.trial.controler.error.exception.EntityDontExistException;
 import com.example.trial.controler.error.exception.IdMustBeNullException;
+import com.example.trial.controler.error.exception.LabelDontBeEmptyException;
 import com.example.trial.controler.error.exception.NameAlreadyExistsException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -25,5 +26,11 @@ public class ExceptionTranslator extends ResponseEntityExceptionHandler {
     protected ResponseEntity<String> handleApologyDontExistException(EntityDontExistException apologyDontExistException) {
         return ResponseEntity.badRequest().body(apologyDontExistException.getMessage());
     }
+
+    @ExceptionHandler(LabelDontBeEmptyException.class)
+    protected ResponseEntity<String> handleLabelDontBeEmptyException(LabelDontBeEmptyException labelDontBeEmptyException) {
+        return ResponseEntity.badRequest().body(labelDontBeEmptyException.getMessage());
+    }
+
 
 }
